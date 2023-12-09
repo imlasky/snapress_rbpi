@@ -1,6 +1,6 @@
-# snapprint
+# snapress
 
-snapprint is a way to share photos in person instead of online. 
+snapress is a way to share photos in person instead of online. 
 
 This code is meant to be run on a raspberrypi. 
 
