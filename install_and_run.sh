@@ -22,7 +22,6 @@ pip install -r requirements.txt
 
 # Prompt user for email and password
 read -p "Enter your email: " email
-echo  # Add a newline
 read -s -p "Enter your password: " password
 echo  # Add a newline
 

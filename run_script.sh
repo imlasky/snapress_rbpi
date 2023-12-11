@@ -1,6 +1,6 @@
 #!/bin/bash
 
 while true; do
-    python your_script.py
+    python main.py
     sleep 1
 done
