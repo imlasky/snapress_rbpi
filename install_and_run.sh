@@ -16,21 +16,23 @@ if [ -e run_script_pid.txt ]; then
     # Kill the existing process
     kill $pid
     rm run_script_pid.txt  # Remove the PID file
-    echo "Background process stopped."
+    echo "background process stopped."
 fi
 
+echo "creating virtual environment..."
 # Create a virtual environment (if not already created)
 python3 -m venv venv >> "$log_file" 2>&1
 
 # Activate the virtual environment
 source venv/bin/activate  >> "$log_file" 2>&1
 
+echo "Installing packages..."
 # Install packages from requirements.txt
 pip install -r requirements.txt >> "$log_file" 2>&1
 
 # Prompt user for email and password
-read -p "Enter your email: " email
-read -s -p "Enter your password: " password
+read -p "email: " email
+read -s -p "password: " password
 echo  # Add a newline
 
 # Save email and password to .env file
@@ -38,15 +40,15 @@ echo "EMAIL=$email" > .env
 echo "PASSWORD=$password" >> .env
 
 # Get a list of printers and let the user choose one
-echo "Available printers:"
+echo "available printers:"
 lpstat -p -d | awk '/printer/ {print NR, $2}'
-read -p "Enter the number of your preferred printer: " printer_number
+read -p "enter the number of your preferred printer: " printer_number
 
 # Get the printer name based on the selected number
 printer_name=$(lpstat -p -d | awk -v n="$printer_number" 'NR==n {print $2}')
 
 # Set the preferred printer as the default printer using lpoptions
-lpoptions -d "$printer_name" > /dev/null 2>&1 && echo "Default printer set" || log_error "Failed to set default printer"
+lpoptions -d "$printer_name" > /dev/null 2>&1 && echo "Default printer set" || log_error "failed to set default printer"
 
 # Run the run_script.sh in the background and save the PID to a file
 ./run_script.sh >> "$log_file" 2>&1 &

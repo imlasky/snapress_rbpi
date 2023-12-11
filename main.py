@@ -40,6 +40,7 @@ def getPics(token):
             
             command = ['rm', pic['pic']]
             subprocess.run(command, check=True)
+            
 
 if __name__ == "__main__":
     load_dotenv()
