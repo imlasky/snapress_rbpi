@@ -1,3 +1,5 @@
 venv/
 .env
 .git
+install_and_run.log
+run_script_pid.txt
