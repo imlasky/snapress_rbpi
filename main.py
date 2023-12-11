@@ -43,8 +43,8 @@ def getPics(token):
 
 if __name__ == "__main__":
     load_dotenv()
-    email = os.getenv('email')
-    password = os.getenv('password')
+    email = os.getenv('EMAIL')
+    password = os.getenv('PASSWORD')
     
     auth = getAuth(email, password)
     pics = getPics(auth['token'])
