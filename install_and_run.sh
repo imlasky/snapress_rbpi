@@ -26,7 +26,7 @@ python3 -m venv venv >> "$log_file" 2>&1
 # Activate the virtual environment
 source venv/bin/activate  >> "$log_file" 2>&1
 
-echo "Installing packages..."
+echo "installing packages..."
 # Install packages from requirements.txt
 pip install -r requirements.txt >> "$log_file" 2>&1
 
