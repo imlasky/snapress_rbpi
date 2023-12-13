@@ -2,11 +2,12 @@ import requests
 from dotenv import load_dotenv
 import os
 import subprocess
-
+from time import time
 
 
 def getAuth(email, password): 
 
+    # authorize the user and get the auth token
     url = 'https://api.snapress.com/api/collections/users/auth-with-password'
     payload = {
         'identity': email,
@@ -27,6 +28,7 @@ def getPics(token):
 
     pics = response.json()
 
+    # iterate through all the pics and write them to a file, print the file, then delete the file
     if pics['totalItems'] > 0: 
         for pic in pics['items']:
             pic_url = f"https://api.snapress.com/api/files/{pic['collectionId']}/{pic['id']}/{pic['pic']}"
@@ -37,7 +39,9 @@ def getPics(token):
             response = requests.delete(url+f"/{pic['id']}", headers=headers)
             command = ['lp', pic['pic']]
             subprocess.run(command, check=True)
-            
+
+            # just to make sure that the picture was sent to the printer
+            time.sleep(10)
             command = ['rm', pic['pic']]
             subprocess.run(command, check=True)
             
