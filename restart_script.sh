@@ -1,3 +1,6 @@
+# Log file path
+log_file="install_and_run.log"
+
 # Function to log errors
 log_error() {
     echo "[ERROR] $1" >> "$log_file"
