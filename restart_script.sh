@@ -19,3 +19,6 @@ fi
 
 # Run the run_script.sh in the background and save the PID to a file
 ./run_script.sh >> "$log_file" 2>&1 &
+
+# Save the PID to a file
+echo $! > run_script_pid.txt
